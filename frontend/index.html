@@ -1,20 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>E-commerce Demo</title>
+    <meta charset="UTF-8">
+    <title>Dashboard | Microservicios E-commerce</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>Dashboard E-commerce</h1>
+    <header>
+        <h1>Dashboard de Microservicios</h1>
+        <p>Usuarios y Productos — E-commerce Demo</p>
+    </header>
 
-    <h2>Usuarios</h2>
-    <button onclick="loadUsers()">Cargar Usuarios</button>
-    <ul id="users"></ul>
+    <main>
+        <section class="card">
+            <h2>Usuarios</h2>
+            <button onclick="loadUsers()">Cargar Usuarios</button>
+            <div id="users-loading" class="loading hidden">Cargando usuarios...</div>
+            <div id="users-error" class="error hidden"></div>
+            <ul id="users"></ul>
+        </section>
 
-    <h2>Productos</h2>
-    <button onclick="loadProducts()">Cargar Productos</button>
-    <ul id="products"></ul>
+        <section class="card">
+            <h2>Productos</h2>
+            <button onclick="loadProducts()">Cargar Productos</button>
+            <div id="products-loading" class="loading hidden">Cargando productos...</div>
+            <div id="products-error" class="error hidden"></div>
+            <ul id="products"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Microservices Demo • Apache Frontend</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
