@@ -1,7 +1,9 @@
 version: "3.8"
+
 services:
   mongo:
     image: mongo:6
+    container_name: mongo
     restart: unless-stopped
     volumes:
       - mongo-data:/data/db
@@ -10,8 +12,8 @@ services:
 
   mongo-express:
     image: mongo-express
+    container_name: mongo-express
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: ""
       ME_CONFIG_MONGODB_URL: "mongodb://mongo:27017/"
     ports:
       - "8081:8081"
@@ -20,6 +22,7 @@ services:
 
   postgres:
     image: postgres:15
+    container_name: postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
@@ -31,6 +34,7 @@ services:
       - "5432:5432"
 
   users:
+    container_name: users
     build: ./users-service
     environment:
       - MONGO_URI=mongodb://mongo:27017/usersdb
@@ -40,24 +44,26 @@ services:
       - mongo
 
   products:
+    container_name: products
     build: ./products-service
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=productsdb
-      - POSTGRES_HOST=postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: productsdb
+      POSTGRES_HOST: postgres
     ports:
       - "8000:8000"
     depends_on:
       - postgres
+
   frontend:
     build: ./frontend
+    container_name: frontend
     ports:
       - "8080:80"
     depends_on:
       - users
       - products
-
 
 volumes:
   mongo-data:

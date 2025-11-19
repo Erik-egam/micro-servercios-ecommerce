@@ -1,10 +1,13 @@
+from dotenv import load_dotenv
 import os
 from fastapi import FastAPI, HTTPException
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from .models import Base, Product, ProductCreate
+from fastapi.middleware.cors import CORSMiddleware
 
-from dotenv import load_dotenv
+
+
 load_dotenv()
 
 DB_USER = os.getenv("POSTGRES_USER", "postgres")
@@ -23,9 +26,18 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
 
 @app.post("/products", status_code=201)
 def create_product(p: ProductCreate):
@@ -37,12 +49,14 @@ def create_product(p: ProductCreate):
     db.close()
     return prod
 
+
 @app.get("/products")
 def list_products():
     db = SessionLocal()
     items = db.query(Product).all()
     db.close()
     return items
+
 
 @app.get("/products/{id}")
 def get_product(id: int):

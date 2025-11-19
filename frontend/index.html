@@ -1,41 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard | Microservicios E-commerce</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Dashboard E-commerce</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 40px auto;
+            max-width: 900px;
+            background: #f4f6f8;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+            border-left: 6px solid #3498db;
+            padding-left: 10px;
+        }
+
+        button {
+            padding: 10px 18px;
+            background: #3498db;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.2s;
+            margin-bottom: 12px;
+        }
+
+        button:hover {
+            background: #217dbb;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: #c0392b;
+            margin-top: 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: white;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+
+        ul li:hover {
+            transform: translateX(3px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        }
+
+        .loading {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>Dashboard de Microservicios</h1>
-        <p>Usuarios y Productos — E-commerce Demo</p>
-    </header>
+    <h1>Dashboard E-commerce</h1>
 
-    <main>
-        <section class="card">
-            <h2>Usuarios</h2>
-            <button onclick="loadUsers()">Cargar Usuarios</button>
-            <div id="users-loading" class="loading hidden">Cargando usuarios...</div>
-            <div id="users-error" class="error hidden"></div>
-            <ul id="users"></ul>
-        </section>
+    <h2>Usuarios</h2>
+    <button onclick="loadUsers()">Cargar Usuarios</button>
+    <p id="users-loading" class="hidden loading">Cargando...</p>
+    <p id="users-error" class="error hidden"></p>
+    <ul id="users"></ul>
 
-        <section class="card">
-            <h2>Productos</h2>
-            <button onclick="loadProducts()">Cargar Productos</button>
-            <div id="products-loading" class="loading hidden">Cargando productos...</div>
-            <div id="products-error" class="error hidden"></div>
-            <ul id="products"></ul>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 Microservices Demo • Apache Frontend</p>
-    </footer>
+    <h2>Productos</h2>
+    <button onclick="loadProducts()">Cargar Productos</button>
+    <p id="products-loading" class="hidden loading">Cargando...</p>
+    <p id="products-error" class="error hidden"></p>
+    <ul id="products"></ul>
 
     <script src="script.js"></script>
 </body>
-
 </html>

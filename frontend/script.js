@@ -1,6 +1,6 @@
-// Cambia esta URL dependiendo del entorno (compose vs k8s)
-const BASE_URL = "http://localhost"; 
-// Ejemplo compose -> const BASE_URL = "http://localhost";
+// APIs accesibles desde el navegador
+const USERS_URL = "http://localhost:3000";
+const PRODUCTS_URL = "http://localhost:8000";
 
 async function loadUsers() {
     const ul = document.getElementById("users");
@@ -12,13 +12,10 @@ async function loadUsers() {
     loading.classList.remove("hidden");
 
     try {
-        const res = await fetch(`${BASE_URL}/users`);
+        const res = await fetch(`${USERS_URL}/users`);
         if (!res.ok) throw new Error("Error al obtener usuarios");
-        
+
         const data = await res.json();
-
-        if (!Array.isArray(data)) throw new Error("Respuesta inesperada");
-
         data.forEach(u => {
             const li = document.createElement("li");
             li.innerHTML = `<strong>${u.name}</strong> — ${u.email}`;
@@ -26,7 +23,7 @@ async function loadUsers() {
         });
 
     } catch (err) {
-        error.textContent = err.message;
+        error.textContent = "No se pudo conectar con el servicio de usuarios";
         error.classList.remove("hidden");
     } finally {
         loading.classList.add("hidden");
@@ -43,11 +40,10 @@ async function loadProducts() {
     loading.classList.remove("hidden");
 
     try {
-        const res = await fetch(`${BASE_URL}/products`);
+        const res = await fetch(`${PRODUCTS_URL}/products`);
         if (!res.ok) throw new Error("Error al obtener productos");
 
         const data = await res.json();
-
         data.forEach(p => {
             const li = document.createElement("li");
             li.innerHTML = `<strong>${p.name}</strong> — $${p.price}`;
@@ -55,7 +51,7 @@ async function loadProducts() {
         });
 
     } catch (err) {
-        error.textContent = err.message;
+        error.textContent = "No se pudo conectar con el servicio de productos";
         error.classList.remove("hidden");
     } finally {
         loading.classList.add("hidden");
