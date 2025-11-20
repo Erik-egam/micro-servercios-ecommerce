@@ -463,8 +463,11 @@ npm test
 <summary>Contributor Graph</summary>
 <br>
 <p align="left">
-   <a href="https://github.com{/Erik-egam/micro-servercios-ecommerce/}graphs/contributors">
+   <a href="[https://github.com{/Erik-egam/micro-servercios-ecommerce/}graphs/contributors](https://github.com/Erik-egam)">
       <img src="https://contrib.rocks/image?repo=Erik-egam/micro-servercios-ecommerce">
+   </a>
+   <a href="[https://github.com{/Erik-egam/micro-servercios-ecommerce/}graphs/contributors](https://github.com/Erik-egam)">
+      <img src="[https://contrib.rocks/image?repo=Erik-egam/micro-servercios-ecommerce](https://avatars.githubusercontent.com/u/158068182?v=4)">
    </a>
 </p>
 </details>
